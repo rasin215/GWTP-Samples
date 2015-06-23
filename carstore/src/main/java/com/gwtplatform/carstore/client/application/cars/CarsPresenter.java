@@ -156,13 +156,14 @@ public class CarsPresenter extends Presenter<MyView, MyProxy>
     protected void onBind() {
         addRegisteredHandler(ActionBarEvent.getType(), this);
         carProxyFactory.create(new CarDto(), NameTokens.NEW_CAR);
+           getView().initDataProvider();
     }
 
     @Override
     protected void onReveal() {
         ActionBarVisibilityEvent.fire(this, true);
         ChangeActionBarEvent.fire(this, Arrays.asList(ActionType.ADD), true);
-        getView().initDataProvider();
+     
 
         carsDelegate
                 .withCallback(new AbstractAsyncCallback<Integer>() {
